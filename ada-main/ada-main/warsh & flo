@@ -1,0 +1,88 @@
+#include<iostream>
+using namespace std;
+
+int n=4; //Global declaration of 4x4 matrix
+int a[4][4];
+
+void warshall(int n){ //Function to implement warshall's algorithm
+	int i,j,k;
+	for (k=0; k<n; k++){
+		for(i=0; i<n; i++){
+			for(j=0; j<n; j++){
+				a[i][j]=a[i][j]||(a[i][k] && a[k][j]);
+			}
+		}
+	}
+cout<<"Printing matrix after applying warshall's algorithm\n";
+	for(i=0; i<n; i++){
+		for(j=0; j<n; j++){
+			cout<<a[i][j]<<"\t";
+		}
+		cout<<"\n";
+	}
+}
+
+
+//Main function
+int main(){
+	//Input for the matrix
+	for(int i=0; i<n; i++){
+		cout<<"Enter adjacency for row "<<i<<"\n";
+		for(int j=0; j<n; j++){
+			cin>>a[i][j];
+		}
+		cout<<"\n";
+	}
+	
+	warshall(n);
+	return 0;
+}
+
+
+
+
+
+#include<iostream>
+#include<climits>
+using namespace std;
+
+int n=4; //Global declaration of 4x4 matrix
+int a[4][4];
+
+void floyd(int n){ //Function to implement floyd's algorithm
+	int i,j,k;
+	for (k=0; k<n; k++){
+		for(i=0; i<n; i++){
+			for(j=0; j<n; j++){
+				if(a[i][j]>a[i][k]+a[k][j]){
+					a[i][j]=min(a[i][j], a[i][k]+a[k][j]);
+				}
+			}
+		}
+	}
+	
+	//Print Matrix
+	cout<<"Printing matrix after applying warshall's algorithm\n";
+	for(i=0; i<n; i++){
+		for(j=0; j<n; j++){
+			cout<<a[i][j]<<"\t";
+		}
+		cout<<"\n";
+	}
+}
+
+
+//Main function
+int main(){
+	//Input for the matrix
+	for(int i=0; i<n; i++){
+		cout<<"Enter adjacency for row "<<i<<"\n";
+		for(int j=0; j<n; j++){
+			cin>>a[i][j];
+		}
+		cout<<"\n";
+	}
+	
+	floyd(n);
+	return 0;
+}
